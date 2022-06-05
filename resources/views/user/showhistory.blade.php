@@ -137,6 +137,7 @@ https://templatemo.com/tm-546-sixteen-clothing
           {{-- <td style="padding:20px;">Customer Name</td> --}}
           <td style="padding:20px;">Phone</td>
           <td style="padding:20px;">Address</td>
+          <td style="padding:20px;">Product ID</td>
           <td style="padding:20px;">Product Title</td>
           <td style="padding:20px;">Price</td>
           <td style="padding:20px;">Quantity</td>
@@ -165,6 +166,7 @@ https://templatemo.com/tm-546-sixteen-clothing
           {{-- <td style="padding:20px;">{{$orders->name}}</td> --}}
                         <td style="padding:20px;">{{$orders->phone}}</td>
                         <td style="padding:20px;">{{$orders->address}}</td>
+                        <td style="padding:20px;">{{$orders->product_id}}</td>
                         <td style="padding:20px;">{{$orders->product_name}}</td>
                         <td style="padding:20px;">{{$orders->price}}</td>
                         <td style="padding:20px;">{{$orders->quantity}}</td>

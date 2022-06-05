@@ -132,6 +132,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <table>
         <tr style="background-color:black; color:white;">
           {{-- <td style="padding:10px; font-size:20px color:white;">Product Image</td> --}}
+          <td style="padding:10px; font-size:20px color:white;">Product ID</td>
             <td style="padding:10px; font-size:20px color:white;">Product Name</td>
             <td style="padding:10px; font-size:20px color:white;">Quantity</td>
             <td style="padding:10px; font-ssize:20px color:white;">Price</td>
@@ -141,10 +142,13 @@ https://templatemo.com/tm-546-sixteen-clothing
 
 
         <form action="{{url('order')}}" method="POST">
+          @foreach($cart as $carts)
+
+          {{-- <form action="{{url('order/ ' . $carts->product_id)}}" method="POST"> --}}
 
           @csrf
 
-        @foreach($cart as $carts)
+        {{-- @foreach($cart as $carts) --}}
 
         
         <tr style="background-color: black">
@@ -154,6 +158,15 @@ https://templatemo.com/tm-546-sixteen-clothing
             <img height="100" width="100" src="/productimage/{{$carts->image}}" alt="">
 
           </td> --}}
+
+          <td style="padding:10px; color:white;">
+
+            <input type="text" name="productid[]" value="{{$carts->product_id}}" hidden>
+
+            {{$carts->product_id}}
+
+          </td>
+
             <td style="padding:10px; color:white;">
 
               <input type="text" name="productname[]" value="{{$carts->product_title}}" hidden>

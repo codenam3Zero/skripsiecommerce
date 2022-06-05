@@ -241,7 +241,7 @@ class AdminController extends Controller
 
         $order=order::find($id);
 
-        $order->status='delivered';
+        $order->status='confirmed';
 
         $order->save();
 

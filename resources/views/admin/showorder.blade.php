@@ -49,7 +49,7 @@
                         <td style="padding:20px;">{{$orders->status}}</td>
                         <td style="padding:20px;">
                             <a class="btn btn-success" href="{{url('updatestatus',$orders->id)}}">
-                                Delivered
+                                Confirm
                             </a>
                         </td>
                     </tr>

@@ -40,7 +40,9 @@ class HomeController extends Controller
             //$userid=user::where('id',$user->id)->get();
             $userid = Auth::user()->id;
 
-            $count=cart::where('phone',$user->phone)->count();
+            //$count=cart::where('phone',$user->phone)->count();
+
+            $count=cart::where('user_id',$user->id)->count();
 
             return view('user.home',compact('data','count','userid'));
         }
@@ -123,7 +125,8 @@ class HomeController extends Controller
             $cart=new cart;
 
             
-            
+            $cart->user_id=$user->id;
+            $cart->product_id=$product->id;
             $cart->name=$user->name;
             $cart->phone=$user->phone;
             $cart->address=$user->address;
@@ -136,12 +139,16 @@ class HomeController extends Controller
 
             $cart2=$cart->quantity;
 
-            $var2 = \DB::select('SELECT * from carts WHERE phone = ? AND product_title = ?', [$user->phone, $cart->product_title]);
+            //tadi yg dipake yg ini
+            //$var2 = \DB::select('SELECT * from carts WHERE phone = ? AND product_title = ?', [$user->phone, $cart->product_title]);
+
+            //sekarang coba yg ini
+            $var2 = \DB::select('SELECT * from carts WHERE user_id = ? AND product_title = ?', [$user->id, $cart->product_title]);
 
             //$var3 = \DB::select('SELECT quantity from carts WHERE phone = ? AND product_title = ?', [$user->phone, $cart->product_title]);
 
 
-            $var4 = cart::where('phone',$user->phone)
+            $var4 = cart::where('user_id',$user->id)
                     ->where('product_title',$cart->product_title)
                     ->sum('quantity');
 
@@ -299,9 +306,9 @@ class HomeController extends Controller
         $userid = Auth::user()->id;
         $user=auth()->user();
 
-        $cart=cart::where('phone',$user->phone)->get();
+        $cart=cart::where('user_id',$user->id)->get();
 
-            $count=cart::where('phone',$user->phone)->count();
+            $count=cart::where('user_id',$user->id)->count();
 
 
         return view('user.showcart',compact('count','cart','userid'));
@@ -327,9 +334,9 @@ class HomeController extends Controller
         $data = product::paginate(9);
 
 
-        $cart=cart::where('phone',$user->phone)->get();
+        $cart=cart::where('user_id',$user->id)->get();
 
-            $count=cart::where('phone',$user->phone)->count();
+            $count=cart::where('user_id',$user->id)->count();
 
 
         return view('user.aboutus',compact('count','cart','data','userid'));
@@ -345,6 +352,7 @@ class HomeController extends Controller
 
     public function confirmorder(Request $request)
     {
+        //$product=product::all();
 
         $user=auth()->user();
 
@@ -360,6 +368,14 @@ class HomeController extends Controller
 
 
             $order=new order;
+
+            $order->user_id=$user->id;
+
+            //$productid=cart::where('product_id',$product->id)->get();
+
+            // $product=product::find($id);
+
+            $order->product_id=$request->productid[$key];
 
             $order->product_name=$request->productname[$key];
 
@@ -380,7 +396,7 @@ class HomeController extends Controller
 
         }
 
-        DB::table('carts')->where('phone',$phone)->delete();
+        DB::table('carts')->where('user_id',$user->id)->delete();
 
 
         return redirect()->back()->with('message','Product Ordered Succesfully');
@@ -409,9 +425,9 @@ class HomeController extends Controller
         //$userid=user::where('id',$user->id)->get();
 
 
-        $cart=cart::where('phone',$user->phone)->get();
+        $cart=cart::where('user_id',$user->id)->get();
 
-            $count=cart::where('phone',$user->phone)->count();
+            $count=cart::where('user_id',$user->id)->count();
 
 
         return view('user.userprofile',compact('count','cart','userid','username','useremail','userphone','useraddress'));
@@ -430,7 +446,7 @@ class HomeController extends Controller
 
         $data->address=$request->address;
 
-        $data->password=$request->password;
+        //$data->password=$request->password;
 
 
         $data->save();
@@ -445,9 +461,9 @@ class HomeController extends Controller
 
         $history=order::where('phone',$user->phone)->get();
 
-        $cart=cart::where('phone',$user->phone)->get();
+        $cart=cart::where('user_id',$user->id)->get();
 
-            $count=cart::where('phone',$user->phone)->count();
+            $count=cart::where('user_id',$user->id)->count();
 
 
         return view('user.showhistory',compact('count','cart','userid','history'));
