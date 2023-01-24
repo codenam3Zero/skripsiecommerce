@@ -192,6 +192,11 @@ https://templatemo.com/tm-546-sixteen-clothing
                 <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="$useraddress" required />
             </div>
 
+            {{-- <div style="padding: 15px;">
+              <x-jet-label for="upload_ktm" value="{{ __('Upload KTM') }}" />
+              <input type="file" name="file" required>
+           </div> --}}
+
             {{-- <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
@@ -229,6 +234,22 @@ https://templatemo.com/tm-546-sixteen-clothing
                 </x-jet-button>
             </div>
         </form>
+
+        <form method="POST" action="{{url('updateuserktm',$userid)}}" enctype="multipart/form-data">
+          @csrf
+
+        <div style="padding: 15px;">
+          <x-jet-label for="upload_ktm" value="{{ __('Upload KTM') }}" />
+          <input type="file" name="file" required>
+       </div>
+       <x-jet-button class="ml-4">
+        {{ __('Upload') }}
+    </x-jet-button>
+
+  </form>
+
+
+
     </x-jet-authentication-card>
 </x-guest-layout>
 

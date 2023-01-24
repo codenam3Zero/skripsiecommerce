@@ -69,14 +69,14 @@
         </a>
       </li>
 
-      <li class="nav-item menu-items">
+      {{-- <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('redirect3')}}">
           <span class="menu-icon">
             <i class="mdi mdi-file-document-box"></i>
           </span>
           <span class="menu-title">Website</span>
         </a>
-      </li>
+      </li> --}}
       
       <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('product')}}">
@@ -96,12 +96,33 @@
         </a>
       </li>
 
-      <li class="nav-item menu-items">
+      {{-- <li class="nav-item menu-items">
         <a class="nav-link" href="{{url('showorder')}}">
           <span class="menu-icon">
             <i class="mdi mdi-file-document-box"></i>
           </span>
           <span class="menu-title">Orders</span>
+        </a>
+      </li> --}}
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{url('showtransaction')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-file-document-box"></i>
+          </span>
+          <span class="menu-title">Transactions</span>
+        </a>
+      </li>
+
+
+
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{url('verifikasiktm')}}">
+          <span class="menu-icon">
+            <i class="mdi mdi-file-document-box"></i>
+          </span>
+          <span class="menu-title">Verifikasi KTM</span>
         </a>
       </li>
 

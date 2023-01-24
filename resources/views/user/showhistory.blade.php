@@ -47,7 +47,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>UAKB <em>Mart</em></h2></a>
+          <a class="navbar-brand" href="redirect"><h2>UAKB <em>Mart</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -132,17 +132,19 @@ https://templatemo.com/tm-546-sixteen-clothing
     <div style="padding:100px;" align="center">
 
     <table>
-        <tr style="background-color:black; color:white;">
-          {{-- <td style="padding:10px; font-size:20px color:white;">Product Image</td> --}}
-          {{-- <td style="padding:20px;">Customer Name</td> --}}
-          <td style="padding:20px;">Phone</td>
-          <td style="padding:20px;">Address</td>
-          <td style="padding:20px;">Product ID</td>
-          <td style="padding:20px;">Product Title</td>
-          <td style="padding:20px;">Price</td>
-          <td style="padding:20px;">Quantity</td>
-          <td style="padding:20px;">Status</td>
-          {{-- <td style="padding:20px;">Action</td> --}}
+        <tr style="background-color:red; color:white;">
+          <td style="padding:10px;">ID</td>
+          <td style="padding:10px;">Status</td>
+          {{-- <td style="padding:10px;">Name</td> --}}
+          {{-- <td style="padding:10px;">Email</td> --}}
+          {{-- <td style="padding:10px;">Phone</td> --}}
+          <td style="padding:10px;">Transaction ID</td>
+          <td style="padding:10px;">Order ID</td>
+          <td style="padding:10px;">Total Price</td>
+          <td style="padding:10px;">Payment Type</td>
+          <td style="padding:10px;">Confirmation Status</td>
+          <td style="padding:10px;">Details</td>
+          {{-- <td style="padding:10px;">Confirm Payment</td> --}}
         </tr>
 
 
@@ -151,7 +153,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
           @csrf
 
-        @foreach($history as $orders)
+        @foreach($history as $transactions)
 
         
         <tr style="background-color: black; color:white">
@@ -164,13 +166,30 @@ https://templatemo.com/tm-546-sixteen-clothing
             
 
           {{-- <td style="padding:20px;">{{$orders->name}}</td> --}}
-                        <td style="padding:20px;">{{$orders->phone}}</td>
+                        {{-- <td style="padding:20px;">{{$orders->phone}}</td>
                         <td style="padding:20px;">{{$orders->address}}</td>
                         <td style="padding:20px;">{{$orders->product_id}}</td>
                         <td style="padding:20px;">{{$orders->product_name}}</td>
                         <td style="padding:20px;">{{$orders->price}}</td>
                         <td style="padding:20px;">{{$orders->quantity}}</td>
-                        <td style="padding:20px;">{{$orders->status}}</td>
+                        <td style="padding:20px;">{{$orders->status}}</td> --}}
+
+          <td style="padding:10px;">{{$transactions->id}}</td>
+          <td style="padding:10px;">{{$transactions->status}}</td>
+          {{-- <td style="padding:10px;">Name</td> --}}
+          {{-- <td style="padding:10px;">Email</td> --}}
+          {{-- <td style="padding:10px;">Phone</td> --}}
+          <td style="padding:10px;">{{$transactions->transaction_id}}</td>
+          <td style="padding:10px;">{{$transactions->order_id}}</td>
+          <td style="padding:10px;">{{$transactions->gross_amount}}</td>
+          <td style="padding:10px;">{{$transactions->payment_type}}</td>
+          <td style="padding:10px;">{{$transactions->confirmation}}</td>
+          <td style="padding:10px;">
+            <a class="btn btn-success" href="{{url('showhistorydetail',$transactions->id)}}">
+              Details
+          </a>
+          </td>
+          {{-- <td style="padding:10px;">Confirm Payment</td> --}}
 
         @endforeach
 
